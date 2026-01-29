@@ -1,12 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import User from '../models/User.js';
-import jwt from 'jsonwebtoken';
-
-const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: '30d',
-    });
-};
+import { generatetokensandsetcookies } from '../utils/generateToken.js';
 
 // @desc    Register a new user
 // @route   POST /api/users
@@ -27,10 +21,11 @@ const registerUser = asyncHandler(async (req, res) => {
     });
 
     if (user) {
+        const token = generatetokensandsetcookies(user._id, res);
         res.status(201).json({
             _id: user._id,
             email: user.email,
-            token: generateToken(user._id),
+            token: token,
         });
     } else {
         res.status(400);
@@ -47,10 +42,11 @@ const loginUser = asyncHandler(async (req, res) => {
     const user = await User.findOne({ email });
 
     if (user && (await user.matchPassword(password))) {
+        const token = generatetokensandsetcookies(user._id, res);
         res.json({
             _id: user._id,
             email: user.email,
-            token: generateToken(user._id),
+            token: token,
         });
     } else {
         res.status(401);
