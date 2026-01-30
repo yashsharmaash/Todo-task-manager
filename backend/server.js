@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './config/db.js';
 import userRoutes from './routes/authRoutes.js';
+import boardRoutes from './routes/boardRoutes.js';
+import todoRoutes from './routes/todoRoutes.js';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import morgan from 'morgan';
@@ -23,6 +25,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 app.use('/api/users', userRoutes);
+app.use('/api/boards', boardRoutes);
+app.use('/api/todos', todoRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
