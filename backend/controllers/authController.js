@@ -1,11 +1,18 @@
 import asyncHandler from 'express-async-handler';
 import User from '../models/User.js';
 import { generatetokensandsetcookies } from '../utils/generateToken.js';
+import { validationResult } from 'express-validator';
 
 // @desc    Register a new user
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        res.status(400);
+        throw new Error(errors.array()[0].msg);
+    }
+
     const { email, password } = req.body;
 
     const userExists = await User.findOne({ email });

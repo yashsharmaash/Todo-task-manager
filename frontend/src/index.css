@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        font-family: 'Outfit', sans-serif;
+        @apply text-slate-100 bg-slate-950;
+        /* Rich dark gradient background */
+        background-color: #020617;
+        /* slate-950 */
+        background-image:
+            radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+            radial-gradient(at 50% 0%, hsla(225, 39%, 10%, 1) 0, transparent 50%),
+            radial-gradient(at 100% 0%, hsla(339, 49%, 10%, 1) 0, transparent 50%);
+        min-height: 100vh;
+    }
+}
+
+@layer utilities {
+    .glass {
+        @apply bg-slate-800/80 backdrop-blur-2xl border border-white/20 shadow-2xl shadow-black/50 ring-1 ring-white/10;
+    }
+
+    .glass-light {
+        @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-xl text-slate-900;
+    }
+
+    .glass-panel {
+        @apply bg-slate-800/60 backdrop-blur-md border border-white/10 shadow-lg;
+    }
+
+    .text-gradient {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-300 to-purple-300;
+    }
+}
+
+/* Custom Scrollbar for Dark Theme */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-slate-900;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-slate-700 rounded-full hover:bg-slate-600;
+}
