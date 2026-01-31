@@ -7,7 +7,7 @@ export const generatetokensandsetcookies = (userId, res) => {
     res.cookie('jwt-login', token, {
         maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days in milliseconds
         httpOnly: true, // prevents access from javascript, prevent XSS attacks
-        sameSite: "strict", // prevents CSRF attacks
+        sameSite: ENV_VARS.NODE_ENV === "development" ? "strict" : "none", // strict for localhost, none for cross-site (Render+Vercel)
         secure: ENV_VARS.NODE_ENV !== "development",
     });
 
