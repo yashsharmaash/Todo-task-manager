@@ -20,7 +20,7 @@ const Login = () => {
     // Regex Utils
     // eslint-disable-next-line
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
