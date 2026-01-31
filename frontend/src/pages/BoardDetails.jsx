@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Plus, CheckCircle, Circle, Trash2, Calendar, GripVertical } from 'lucide-react';
+import { ArrowLeft, Plus, CheckCircle, Circle, Trash2, Calendar } from 'lucide-react';
 import api from '../api/axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
