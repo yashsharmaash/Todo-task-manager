@@ -27,6 +27,11 @@ if (process.env.NODE_ENV !== 'production') {
     app.use(morgan('dev'));
 }
 
+app.get('/ping', (req, res) => {
+    res.status(200).send("ok");
+});
+
+
 app.use('/api/users', userRoutes);
 app.use('/api/boards', boardRoutes);
 app.use('/api/todos', todoRoutes);
