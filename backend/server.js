@@ -36,6 +36,10 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
+app.get('/ping', (req, res) => {
+    res.status(200).send("ok");
+});
+
 app.get('/', (req, res) => {
     res.send('Api is running');
 });
